@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1 class="mb-3">From {{ user.username }}</h1>
+    <div >
+    {% for msg in messages %}
+        <article class="media content-section">
+{#          <img class="rounded-circle article-img" src="{{ url_for('static', filename=msg.sender.image_file) }}">#}
+          <div class="media-body">
+
+
+            {% if msg.sender.username == user.username %}
+                <div class="article-metadata" style="text-align: right;">
+                    <small class="article-content">{{ msg.sender.username }}:</small>
+                  <small class="text-muted">{{ msg.date.strftime('%Y-%m-%d %Hh-%Mm-%Ss') }}</small>
+                </div>
+                <div style="text-align: right;">
+                    <audio controls>
+                        <source src="{{ url_for('static', filename=msg.mp3_file_path) }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                     </audio>
+                </div>
+              {% else %}
+                    <div class="article-metadata">
+                        <small class="article-content">{{ msg.sender.username }}:</small>
+                      <small class="text-muted">{{ msg.date.strftime('%Y-%m-%d %Hh-%Mm-%Ss') }}</small>
+                    </div>
+                    <audio controls>
+                        <source src="{{ url_for('static', filename=msg.mp3_file_path) }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                     </audio>
+
+              {% endif %}
+
+          </div>
+        </article>
+    {% endfor %}
+    </div>
+    <form action="{{ url_for('messages.send_message', peer_id=peer_id) }}" method="post">
+        <div style="text-align: right;">
+            <textarea placeholder="Type a message" id="message" name="message" rows="2" cols="100" required></textarea><br><br>
+            <input type="submit" value="Send">
+        </div>
+    </form>
+{% endblock %}
