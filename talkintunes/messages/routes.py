@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify, flash
 from flask_login import login_required, current_user
 from sqlalchemy import or_, and_
 
@@ -11,7 +11,7 @@ message = Blueprint('messages', __name__)
 
 
 @login_required
-@message.route("/messages/<peer_id>", methods=['GET','POST'])
+@message.route("/messages/<peer_id>", methods=['GET', 'POST'])
 def messages(peer_id):
     user = User.query.filter_by(username=current_user.username).first_or_404()
     messages = Messages.query.filter(or_(
@@ -22,12 +22,15 @@ def messages(peer_id):
     return render_template('messages.html', messages=messages, title='Messages', user=user, peer_id=peer_id)
 
 
-@message.route('/decrypt_message/<message_id>')
-def decrypt_message(message_id):
+@message.route('/decrypt_text/<message_id>', methods=['POST'])
+def decrypt_text(message_id):
     with open(current_user.private_key, 'rb') as f:
         private_key_pem = f.read()
     message_content = Messages.query.filter_by(id=message_id).with_entities(Messages.content).first()[0]
-    decrypted_message = decrypt_message(message_content, private_key_pem)
+    decrypted_result = decrypt_message(message_content, private_key_pem)
+    return jsonify({'decrypted_result': decrypted_result})
+
+
 
 @login_required
 @message.route('/send_message/<peer_id>', methods=['POST'])
@@ -51,5 +54,4 @@ def send_message(peer_id):
                    mp3_file_path=mp3_file_path)
     db.session.add(msg)
     db.session.commit()
-
     return redirect(url_for('messages.messages', peer_id=peer_id))

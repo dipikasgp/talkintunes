@@ -41,7 +41,7 @@ class User(db.Model, UserMixin):
 
 class Messages(db.Model):
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
-    content = db.Column(db.Text)
+    content = db.Column(db.LargeBinary)
     date = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
     mp3_file_path = db.Column(db.Text, nullable=False,default='melody.mp3')
     sender_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False, primary_key=True)

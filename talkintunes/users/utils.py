@@ -67,14 +67,12 @@ def encrypt_message(message, recipient_public_key):
         print("Encryption failed:", e)
 
 
-
-
 # Decrypt message with recipient's private key
 def decrypt_message(encrypted_message, private_key):
-    encrypted_message_bytes = encrypted_message.encode('utf-8')
-    private_key = serialization.load_pem_private_key(private_key,password=None, backend=default_backend())
+    # encrypted_message_bytes = encrypted_message.encode('utf-8')
+    private_key = serialization.load_pem_private_key(private_key, password=None, backend=default_backend())
     decrypted_message = private_key.decrypt(
-        encrypted_message_bytes,
+        encrypted_message,
         padding.OAEP(
             mgf=padding.MGF1(algorithm=hashes.SHA256()),
             algorithm=hashes.SHA256(),

@@ -19,21 +19,30 @@
               </a>
               <small class="text-muted">{{ msg.date.strftime('%Y-%m-%d') }}</small>
             </div>
-{#            <h2><a class="article-title" href="{{url_for('posts.post',post_id=post.id)}}">{{ post.title }}</a></h2>#}
+
             <p class="article-content">{{ msg.sender.username }}</p>
+
           </div>
         </article>
     {% endfor %}
-{#    {% for page_num in messages.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}#}
-{#        {% if page_num %}#}
-{#            {% if messages.page == page_num %}#}
-{#                <a class="btn btn-info mb-4" href="{{url_for('users.user_messages', page=page_num)}}">{{page_num}}</a>#}
-{#            {% else %}#}
-{#                <a class="btn btn-outline-info mb-4" href="{{url_for('users.user_messages', page=page_num)}}">{{page_num}}</a>#}
-{#            {% endif %}#}
-{#        {% else %}#}
-{#        ...#}
-{#        {% endif %}#}
-{#    {% endfor %}#}
 
+
+
+{% endblock %}
+
+{% block sidebar %}
+<div>
+  <div class="content-section">
+    <h3>Users</h3>
+
+      <ul>
+        {% for a_user in all_users %}
+            {% if a_user.id != user.id %}
+                <li><a href="{{ url_for('messages.messages', peer_id=a_user.id) }}">{{ a_user.username }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+  </div>
+</div>
 {% endblock %}

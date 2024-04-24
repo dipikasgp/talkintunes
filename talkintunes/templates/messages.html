@@ -28,6 +28,8 @@
                         <source src="{{ url_for('static', filename=msg.mp3_file_path) }}" type="audio/mpeg">
                         Your browser does not support the audio element.
                      </audio>
+                <button class="btn btn-primary decrypt-btn" data-msg-id="{{ msg.id }}">View Message</button>
+                <div class="decrypted-result" id="decrypted-result-{{ msg.id }}"></div>
 
               {% endif %}
 
@@ -41,4 +43,34 @@
             <input type="submit" value="Send">
         </div>
     </form>
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add event listener to all decrypt buttons
+            const decryptButtons = document.querySelectorAll('.decrypt-btn');
+            console.log('lol !!!!!!!!!!!!!!!')
+            decryptButtons.forEach(btn => {
+                btn.addEventListener('click', async function () {
+                    const msgId = btn.getAttribute('data-msg-id');
+                    try {
+                        // Make an AJAX request to the backend
+                        const response = await fetch(`/decrypt_text/${msgId}`, {
+                            method: 'POST'
+
+                            // You can include additional headers or body content if needed
+                        });
+                        const data = await response.json();
+                        // Display decrypted result
+                        const decryptedResult = document.getElementById(`decrypted-result-${msgId}`);
+                        decryptedResult.textContent = `Message: ${data.decrypted_result}`;
+                    } catch (error) {
+                        console.error('Error fetching data:', error);
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}

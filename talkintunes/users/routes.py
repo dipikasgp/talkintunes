@@ -153,3 +153,5 @@ def reset_token(token):
         return redirect(url_for('users.login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
 
+# def get_all_users():
+#     users = User.query.with_entities(User.username, User.id).all()
