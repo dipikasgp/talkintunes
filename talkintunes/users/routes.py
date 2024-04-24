@@ -112,17 +112,6 @@ def user_messages():
     return render_template('user_messages.html', messages=last_messages, title='Messages', user=user)
 
 
-# @login_required
-# @users.route("/messages/<peer_id>")
-# def messages(peer_id):
-#     user = User.query.filter_by(username=current_user.username).first_or_404()
-#     messages = Messages.query.filter(or_(
-#                             and_(Messages.sender_id == peer_id, Messages.receiver_id == current_user.id),
-#                             and_(Messages.receiver_id == peer_id, Messages.sender_id == current_user.id)
-#                             )).all()
-#     return render_template('messages.html', messages=messages, title='Messages', user=user)
-
-
 @users.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:

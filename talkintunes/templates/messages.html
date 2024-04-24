@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <h1 class="mb-3">From {{ user.username }}</h1>
-    <div >
+    <div class="scrollable-frame" id="scrollableFrame">
     {% for msg in messages %}
         <article class="media content-section">
 {#          <img class="rounded-circle article-img" src="{{ url_for('static', filename=msg.sender.image_file) }}">#}
@@ -48,6 +48,10 @@
 
 {% block scripts %}
     <script>
+        window.addEventListener('load', function() {
+            var scrollableFrame = document.getElementById('scrollableFrame');
+            scrollableFrame.scrollTop = scrollableFrame.scrollHeight;
+          });
         document.addEventListener('DOMContentLoaded', function () {
             // Add event listener to all decrypt buttons
             const decryptButtons = document.querySelectorAll('.decrypt-btn');

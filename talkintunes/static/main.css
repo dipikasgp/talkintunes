@@ -78,3 +78,13 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+
+.scrollable-frame {
+  max-height: 70vh;
+  overflow-x: auto; /* Set the maximum height of the frame */
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: 1px solid #ccc; /* Optional: Add border for visual clarity */
+  padding: 10px; /* Optional: Add padding */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for depth */
+}

@@ -1,30 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
     <h1 class="mb-3"> Messages for {{user.username}} ({{messages.total}})</h1>
-    {% for msg in messages %}
-        <article class="media content-section">
-{#          <img class="rounded-circle article-img" src="{{ url_for('static', filename=post.author.image_file) }}">#}
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="{% if msg.sender.username == user.username  %}
-                                        {{url_for('messages.messages',peer_id=msg.receiver.id)}}
-                                     {% else %}
-                                        {{url_for('messages.messages',peer_id=msg.sender.id)}}
-                                     {% endif %}">
-                  {% if msg.sender.username == user.username %}
-                    {{ msg.receiver.username }}
-                  {% else %}
-                      {{ msg.sender.username }}
-                  {% endif %}
-              </a>
-              <small class="text-muted">{{ msg.date.strftime('%Y-%m-%d') }}</small>
-            </div>
+    <div >
+        {% for msg in messages %}
+            <article class="media content-section">
+    {#          <img class="rounded-circle article-img" src="{{ url_for('static', filename=post.author.image_file) }}">#}
+              <div class="media-body">
+                <div class="article-metadata">
+                  <a class="mr-2" href="{% if msg.sender.username == user.username  %}
+                                            {{url_for('messages.messages',peer_id=msg.receiver.id)}}
+                                         {% else %}
+                                            {{url_for('messages.messages',peer_id=msg.sender.id)}}
+                                         {% endif %}">
+                      {% if msg.sender.username == user.username %}
+                        {{ msg.receiver.username }}
+                      {% else %}
+                          {{ msg.sender.username }}
+                      {% endif %}
+                  </a>
+                  <small class="text-muted">{{ msg.date.strftime('%Y-%m-%d') }}</small>
+                </div>
 
-            <p class="article-content">{{ msg.sender.username }}</p>
+                <p class="article-content">{{ msg.sender.username }}</p>
 
-          </div>
-        </article>
-    {% endfor %}
+              </div>
+            </article>
+        {% endfor %}
+    </div>
 
 
 
