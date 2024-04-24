@@ -1,0 +1,7 @@
+
+*.mp3
+*.pyc
+/talkintunes/private_keys
+/talkintunes/users/__pycache__
+/talkintunes/messages/__pycache__
+/talkintunes/main/__pycache__
