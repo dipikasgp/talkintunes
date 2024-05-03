@@ -14,12 +14,15 @@ message = Blueprint('messages', __name__)
 @message.route("/messages/<peer_id>", methods=['GET', 'POST'])
 def messages(peer_id):
     user = User.query.filter_by(username=current_user.username).first_or_404()
+    user_name = User.query.filter_by(id=peer_id).with_entities(User.username).first()[0]
     messages = Messages.query.filter(or_(
         and_(Messages.sender_id == peer_id, Messages.receiver_id == current_user.id),
         and_(Messages.receiver_id == peer_id, Messages.sender_id == current_user.id)
     )).all()
 
-    return render_template('messages.html', messages=messages, title='Messages', user=user, peer_id=peer_id)
+    return render_template('messages.html', messages=messages,
+                           title='Messages', user=user, peer_id=peer_id,
+                           user_name=user_name)
 
 
 @message.route('/decrypt_text/<message_id>', methods=['POST'])

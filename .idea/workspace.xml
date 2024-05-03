@@ -63,7 +63,7 @@
       <recent name="C:\Dipika\Study\flask_blog\blog\static" />
     </key>
   </component>
-  <component name="RunManager" selected="Flask server.flask_blog">
+  <component name="RunManager" selected="Flask server.talkintunes">
     <configuration name="run (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="flask_blog" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -111,6 +111,21 @@
     <configuration name="flask_blog" type="Python.FlaskServer">
       <module name="flask_blog" />
       <option name="target" value="$PROJECT_DIR$/tonecrypt/__init__.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="talkintunes" type="Python.FlaskServer">
+      <module name="talkintunes" />
+      <option name="target" value="$PROJECT_DIR$/talkintunes/__init__.py" />
       <option name="targetType" value="PATH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />

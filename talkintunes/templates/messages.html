@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1 class="mb-3">From {{ user.username }}</h1>
+    <h1 class="mb-3">{{ user_name }}</h1>
     <div class="scrollable-frame" id="scrollableFrame">
     {% for msg in messages %}
         <article class="media content-section">
