@@ -9,7 +9,8 @@
 - [Contributing](#contributing)
 - [License](#license)
 - [Detailed Description](#detailed_description)
-
+- [Future Scope](#future_scope)
+  
 ## Installation
 
 1. Clone the repository:
@@ -97,4 +98,9 @@ Also, the message is then converted into a tune using music21 library and a midi
 In the receiving end, the messages are fetched and showed to the user in a mp3 format. On click on view message, the user will be able to see the message.
 On click on view message the corresponding message is fetched from the db and decrypted with the receiver’s private key and shown to the receiver. 
 
+## Future Scope
+### 1. Create unique pairs of send and receiver note mapping
+Create unique pairs of note mapping once a user starts a conversation with another user and store it in user_note_mapping table. This note mapping will then be unique to the pair of users. Also, the users should be able to regenrate the note mapping
 
+### 2. Private Key storing in user's system and add a configuration where user can specify the file location 
+Private keys are now stored in the service itself. Once the user registers for the app, the user should be able to download and store the private key with them. Which can be used to upload when the user wants to decrypt and view the message
