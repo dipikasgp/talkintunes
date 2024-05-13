@@ -90,7 +90,7 @@ def serialize_rsa_key_to_pem(private_key, username):
         encryption_algorithm=serialization.NoEncryption()
     )
     private_key_file = f'{username}_private_key.pem'
-    private_key_filepath = os.path.join(os.getcwd(), 'talkintunes\\private_keys', private_key_file)
+    private_key_filepath = os.path.join(os.getcwd(), ' \\private_keys', private_key_file)
     with open(private_key_filepath, 'wb') as f:
         f.write(private_key_pem)
 
